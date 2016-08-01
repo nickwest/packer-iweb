@@ -36,6 +36,10 @@
 
         "shutdown_command": "echo '{{user `ssh_name`}}'|sudo -S /sbin/halt -h -p"
     }],
+    "post-processors": [{
+        "output": "build/iweb70.box",
+        "type": "vagrant"
+    }],
     "provisioners": [{
         "type": "shell",
         "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
@@ -44,8 +48,5 @@
             "scripts/vagrant.sh",
             "scripts/compact.sh"
         ]
-    }],
-    "push": {
-        "name": "uw-ischool/iweb70"
-    }
+    }]
 }
