@@ -12,8 +12,8 @@
         "disk_size": 81920,
         "hard_drive_interface": "sata",
 
-        "iso_url": "http://mirrors.mit.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
-        "iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
+        "iso_url": "http://centos.s.uw.edu/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+        "iso_checksum": "9ed9ffb5d89ab8cca834afce354daa70a21dcb410f58287d6316259ff89758f5",
         "iso_checksum_type": "sha256",
 
         "boot_command": [
@@ -24,7 +24,9 @@
         "http_directory": "http",
         "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
 
-        "ssh_username": "{{user `ssh_name`}}",
+        "communicator": "ssh",
+		"ssh_pty": "true",
+		"ssh_username": "{{user `ssh_name`}}",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_port": 22,
         "ssh_wait_timeout": "10000s",
@@ -42,7 +44,7 @@
     }],
     "provisioners": [{
         "type": "shell",
-        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+        "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
         "scripts": [
             "scripts/vboxguest.sh",
             "scripts/vagrant.sh",
