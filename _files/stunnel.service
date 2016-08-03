@@ -1,0 +1,13 @@
+[Unit]
+Description=SSL tunnel for network daemons
+After=network.target remote-fs.target nss-lookup.target syslog.target vboxadd.target httpd.target
+RequiresMountsFor=/etc/stunnel
+
+[Service]
+ExecStart=/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop=/bin/kill -9 $(pgrep stunnel)
+ExecStatus=pgrep stunnel
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

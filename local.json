@@ -42,13 +42,30 @@
         "output": "build/iweb70.box",
         "type": "vagrant"
     }],
-    "provisioners": [{
-        "type": "shell",
-        "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-        "scripts": [
-            "scripts/vboxguest.sh",
-            "scripts/vagrant.sh",
-            "scripts/compact.sh"
-        ]
-    }]
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "scripts": [
+                "scripts/vboxguest.sh",
+                "scripts/vagrant.sh",
+                "scripts/compact.sh"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "_files/httpd.conf",
+            "destination": "/etc/httpd/conf/httpd.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/rewrites.conf",
+            "destination": "/etc/httpd/conf.d/rewrites.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/stunnel.service",
+            "destination": "/etc/systemd/system/stunnel.service"
+        }
+    ]
 }
