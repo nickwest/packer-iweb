@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-
 # Make .gitssh directory
 mkdir /home/vagrant/.gitssh
 chown vagrant:vagrant /home/vagrant/.gitssh
 chmod 700 /home/vagrant/.gitssh
 
 # Stunnel
+cp /home/vagrant/stunnel.service etc/systemd/system/stunnel.service
+rm /home/vagrant/stunnel.service
 adduser stunnel
 
 

@@ -44,28 +44,29 @@
     }],
     "provisioners": [
         {
+            "type": "file",
+            "source": "_files/httpd.conf",
+            "destination": "/home/vagrant/httpd.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/rewrites.conf",
+            "destination": "/home/vagrant/rewrites.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/stunnel.service",
+            "destination": "/home/vagrant/stunnel.service"
+        },
+        {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "scripts/vboxguest.sh",
                 "scripts/vagrant.sh",
+                "scripts/extras.sh",
                 "scripts/compact.sh"
             ]
-        },
-        {
-            "type": "file",
-            "source": "_files/httpd.conf",
-            "destination": "/etc/httpd/conf/httpd.conf"
-        },
-        {
-            "type": "file",
-            "source": "_files/rewrites.conf",
-            "destination": "/etc/httpd/conf.d/rewrites.conf"
-        },
-        {
-            "type": "file",
-            "source": "_files/stunnel.service",
-            "destination": "/etc/systemd/system/stunnel.service"
         }
     ]
 }
