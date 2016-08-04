@@ -42,9 +42,10 @@
         "type": "shell",
         "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
         "scripts": [
-            "scripts/vboxguest.sh",
+			"scripts/vboxguest.sh",
             "scripts/vagrant.sh",
             "scripts/compact.sh"
+			
         ]
     }],
     "post-processors": [
@@ -58,7 +59,7 @@
           "artifact_type": "vagrant.box",
           "metadata": {
             "provider": "virtualbox",
-            "version": "0.1.1"
+            "version": "0.1.2"
           }
         }]
     ]
