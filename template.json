@@ -57,7 +57,7 @@
         {
             "type": "file",
             "source": "_files/ssh_key_config",
-            "destination": "/home/vagrant/.ssh/config"
+            "destination": "/home/vagrant/ssh_config"
         },
         {
             "type": "shell",
