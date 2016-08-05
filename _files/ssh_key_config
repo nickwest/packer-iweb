@@ -1,0 +1,8 @@
+Host github.com
+        HostName github.com
+        PreferredAuthentications publickey
+        IdentityFile ~/.gitssh/id_rsa
+Host bitbucket.org
+        HostName bitbucket.org
+        PreferredAuthentications publickey
+        IdentityFile ~/.gitssh/id_rsa
