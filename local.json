@@ -59,19 +59,25 @@
             "destination": "/home/vagrant/stunnel.service"
         },
         {
+            "type": "file",
+            "source": "_files/ssh_key_config",
+            "destination": "/home/vagrant/ssh_config"
+        },
+        {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
+                "scripts/vboxguest.sh",
                 "scripts/customize.sh",
                 "scripts/composer.sh",
-                "scripts/vboxguest.sh",
                 "scripts/vagrant.sh",
-                "scripts/phpmyadmin.sh",
                 "scripts/apache.sh",
+                "scripts/phpmyadmin.sh",
                 "scripts/git.sh",
                 "scripts/secure-mariadb.sh",
                 "scripts/php.sh",
                 "scripts/stunnel.sh",
+                "scripts/aliases.sh",
                 "scripts/compact.sh"
             ]
         }

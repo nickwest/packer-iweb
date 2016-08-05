@@ -13,3 +13,5 @@ chown stunnel /var/log/stunnel
 # Make stunnel pid directory
 mkdir /var/lib/stunnel
 chown stunnel /var/lib/stunnel
+
+systemctl enable stunnel
