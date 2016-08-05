@@ -8,3 +8,6 @@ mv -v authorized_keys /home/vagrant/.ssh
 mv -vf /home/vagrant/ssh_config /home/vagrant/.ssh/config
 chown -R vagrant /home/vagrant/.ssh
 chmod -R go-rwsx /home/vagrant/.ssh
+
+# Turn off tty
+sed -i 's/Defaults\s*requiretty/#Defaults    requiretty/' /etc/sudoers
