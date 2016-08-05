@@ -62,8 +62,10 @@
                 "scripts/composer.sh",
                 "scripts/vboxguest.sh",
                 "scripts/vagrant.sh",
+                "scripts/phpmyadmin.sh",
                 "scripts/apache.sh",
                 "scripts/git.sh",
+                "scripts/secure-mariadb.sh",
                 "scripts/php.sh",
                 "scripts/stunnel.sh",
                 "scripts/compact.sh"
