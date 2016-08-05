@@ -62,10 +62,14 @@
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
-    			"scripts/vboxguest.sh",
+                "scripts/customize.sh",
+                "scripts/composer.sh",
+                "scripts/vboxguest.sh",
                 "scripts/vagrant.sh",
+                "scripts/phpmyadmin.sh",
                 "scripts/apache.sh",
                 "scripts/git.sh",
+                "scripts/secure-mariadb.sh",
                 "scripts/php.sh",
                 "scripts/stunnel.sh",
                 "scripts/compact.sh"
