@@ -8,3 +8,4 @@ chmod 700 /home/vagrant/.gitssh
 # set some default config values
 su vagrant -c "git config --global core.filemode false"
 su vagrant -c "git config --global color.ui true"
+su vagrant -c "git config --global push.default simple"
