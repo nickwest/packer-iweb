@@ -78,6 +78,7 @@
                 "scripts/php.sh",
                 "scripts/stunnel.sh",
                 "scripts/aliases.sh",
+                "scripts/drush.sh",
                 "scripts/compact.sh"
             ]
         }
