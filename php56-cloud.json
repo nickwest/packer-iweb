@@ -24,9 +24,9 @@
         "http_directory": "http",
         "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
 
-        "communicator": "ssh",
+		"communicator": "ssh",
 		"ssh_pty": "true",
-		"ssh_username": "{{user `ssh_name`}}",
+        "ssh_username": "{{user `ssh_name`}}",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_port": 22,
         "ssh_wait_timeout": "10000s",
@@ -37,10 +37,6 @@
         ],
 
         "shutdown_command": "echo '{{user `ssh_name`}}'|sudo -S /sbin/halt -h -p"
-    }],
-    "post-processors": [{
-        "output": "build/iweb70.box",
-        "type": "vagrant"
     }],
     "provisioners": [
         {
@@ -68,7 +64,7 @@
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "scripts/vboxguest.sh",
-                "scripts/customize.sh",
+                "scripts/lamp-php56.sh",
                 "scripts/composer.sh",
                 "scripts/vagrant.sh",
                 "scripts/apache.sh",
@@ -81,5 +77,20 @@
                 "scripts/compact.sh"
             ]
         }
+    ],
+    "post-processors": [
+        [{
+          "type": "vagrant",
+          "keep_input_artifact": false
+        },
+        {
+          "type": "atlas",
+          "artifact": "uw-ischool/iweb56",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+            "provider": "virtualbox",
+            "version": "0.1.7"
+          }
+        }]
     ]
 }

@@ -1,0 +1,96 @@
+{
+    "variables": {
+        "ssh_name": "vagrant",
+        "ssh_pass": "vagrant"
+    },
+    "builders": [{
+        "type": "virtualbox-iso",
+        "virtualbox_version_file": ".vbox_version",
+        "headless": false,
+
+        "guest_os_type": "RedHat_64",
+        "disk_size": 81920,
+        "hard_drive_interface": "sata",
+
+        "iso_url": "http://centos.s.uw.edu/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+        "iso_checksum": "9ed9ffb5d89ab8cca834afce354daa70a21dcb410f58287d6316259ff89758f5",
+        "iso_checksum_type": "sha256",
+
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        ],
+        "boot_wait": "12s",
+
+        "http_directory": "http",
+        "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+
+		"communicator": "ssh",
+		"ssh_pty": "true",
+        "ssh_username": "{{user `ssh_name`}}",
+        "ssh_password": "{{user `ssh_pass`}}",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "10000s",
+
+        "vboxmanage": [
+            ["modifyvm", "{{.Name}}", "--memory", "2048"],
+            ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ],
+
+        "shutdown_command": "echo '{{user `ssh_name`}}'|sudo -S /sbin/halt -h -p"
+    }],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "_files/httpd.conf",
+            "destination": "/home/vagrant/httpd.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/rewrites.conf",
+            "destination": "/home/vagrant/rewrites.conf"
+        },
+        {
+            "type": "file",
+            "source": "_files/stunnel.service",
+            "destination": "/home/vagrant/stunnel.service"
+        },
+        {
+            "type": "file",
+            "source": "_files/ssh_key_config",
+            "destination": "/home/vagrant/ssh_config"
+        },
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "scripts": [
+                "scripts/vboxguest.sh",
+                "scripts/lamp-php70.sh",
+                "scripts/composer.sh",
+                "scripts/vagrant.sh",
+                "scripts/apache.sh",
+                "scripts/phpmyadmin.sh",
+                "scripts/git.sh",
+                "scripts/secure-mariadb.sh",
+                "scripts/php.sh",
+                "scripts/stunnel.sh",
+                "scripts/aliases.sh",
+                "scripts/compact.sh"
+            ]
+        }
+    ],
+    "post-processors": [
+        [{
+          "type": "vagrant",
+          "keep_input_artifact": false
+        },
+        {
+          "type": "atlas",
+          "artifact": "uw-ischool/iweb70",
+          "artifact_type": "vagrant.box",
+          "metadata": {
+            "provider": "virtualbox",
+            "version": "0.1.7"
+          }
+        }]
+    ]
+}
