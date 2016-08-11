@@ -11,7 +11,7 @@ then
     RESULT=$?
     rm composer-setup.php
 	mv composer.phar /usr/local/bin/composer
-    sed -i 's/export PATH/PATH=$PATH:\/usr\/local\/sbin:$HOME/\.config\/composer\/vendor\/bin\nexport PATH/' /home/vagrant/.bash_profile
+    sed -i 's/export PATH/PATH=$PATH:\/usr\/local\/sbin:\$HOME\/\.config\/composer\/vendor\/bin\nexport PATH/' /home/vagrant/.bash_profile
     exit $RESULT
 else
     >&2 echo 'ERROR: Invalid installer signature'
