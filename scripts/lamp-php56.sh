@@ -9,7 +9,7 @@ yum -y swap -- install mariadb101u-libs -- remove mariadb-libs
 
 yum -y install mariadb101u-server
 yum -y install httpd24u httpd24u-mod_ssl gd
-yum -y install php56u-json php56u-cli php56u-gd php56u php56u-mcrypt php56u-mbstring php56u-bcmath php56u-pdo php56u-pdo_mysql php56u-dom
+yum -y install php56u-json php56u-cli php56u-gd php56u php56u-mcrypt php56u-mbstring php56u-bcmath php56u-pdo php56u-pdo_mysql php56u-dom php56u-posix
 
 systemctl enable httpd
 systemctl enable mariadb
