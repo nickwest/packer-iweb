@@ -39,7 +39,7 @@
         "shutdown_command": "echo '{{user `ssh_name`}}'|sudo -S /sbin/halt -h -p"
     }],
     "post-processors": [{
-        "output": "build/iweb70.box",
+        "output": "build/iweb72.box",
         "type": "vagrant"
     }],
     "provisioners": [
@@ -68,7 +68,7 @@
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "scripts/vboxguest.sh",
-                "scripts/lamp-php70.sh",
+                "scripts/lamp-php72.sh",
                 "scripts/composer.sh",
                 "scripts/vagrant.sh",
                 "scripts/apache.sh",
@@ -76,7 +76,6 @@
                 "scripts/git.sh",
                 "scripts/secure-mariadb.sh",
                 "scripts/php.sh",
-                "scripts/stunnel.sh",
                 "scripts/aliases.sh",
                 "scripts/drush.sh",
                 "scripts/compact.sh"
