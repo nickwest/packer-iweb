@@ -1,4 +1,7 @@
 #!/bin/bash
+sed --in-place '/symbolic-links=0/a \
+\ninnodb_large_prefix=1\ninnodb_file_format=Barracuda' /etc/my.cnf
+
 service mariadb start
 
 # Create some databases
@@ -15,6 +18,7 @@ mysql -u root -e "CREATE DATABASE lts_admin"
 mysql -u root -e "CREATE DATABASE sync_courses"
 mysql -u root -e "CREATE DATABASE sync_people"
 mysql -u root -e "CREATE DATABASE sync_students"
+mysql -u root -e "CREATE DATABASE sync_twitter"
 
 # Make sure that NOBODY can access the server without a password
 mysql -u root -e "UPDATE mysql.user SET Password = PASSWORD('localRootAdmin') WHERE User = 'root'"
