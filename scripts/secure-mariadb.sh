@@ -6,6 +6,7 @@ service mariadb start
 
 # Create some databases
 mysql -u root -e "CREATE DATABASE academics"
+mysql -u root -e "CREATE DATABASE academics-new"
 mysql -u root -e "CREATE DATABASE basemanager"
 mysql -u root -e "CREATE DATABASE checkout"
 mysql -u root -e "CREATE DATABASE cms"

@@ -2,3 +2,6 @@
 
 echo "alias art=\"php artisan --ansi\"" >> /home/vagrant/.bash_profile
 echo "alias composer=\"composer --ansi\"" >> /home/vagrant/.bash_profile
+
+echo "alias art=\"php artisan --ansi\"" >> /home/vagrant/.bashrc
+echo "alias composer=\"composer --ansi\"" >> /home/vagrant/.bashrc
